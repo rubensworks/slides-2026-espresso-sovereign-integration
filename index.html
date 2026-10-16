@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head prefix="foaf: http://xmlns.com/foaf/0.1/">
+    <title>Sovereignty Beyond Storage: Client-centric Data Integration with Personal Query Engines</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="shower/themes/material/styles/styles.css">
+    <link rel="stylesheet" href="styles/rt-custom.css" />
+    <link href='https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;700&display=swap' rel='stylesheet' type='text/css' />
+    
+    <link rel="foaf:maker" href="https://www.rubensworks.net/#me" />
+
+    <style>
+      .shower {
+        --slide-ratio: calc(16 / 9);
+      }
+    </style>
+  </head>
+
+  <body class="shower list" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# foaf: http://xmlns.com/foaf/0.1/ owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# org: http://www.w3.org/ns/org# schema: http://schema.org/ cite: http://purl.org/spar/cito/" typeof="schema:PresentationDigitalDocument">
+    <header class="caption">
+      <div class="title">
+        <h1 property="schema:name">Sovereignty Beyond Storage: Client-centric Data Integration with Personal Query Engines</h1>
+      </div>
+      <div class="captiondata">
+        <p class="author" rel="schema:author"><a href="https://www.rubensworks.net/#me">Ruben Taelman</a></p>
+        <p class="venue">
+          <a href="https://espressoproject.org/london-13-nov-2026/">ESPRESSO Workshop on Sovereign Intelligence</a>, <span rel="schema:datePublished">13 November 2026</span></a>
+        </p>
+      </div>
+    </header>
+
+    <section id="title" class="slide title" inlist="" rel="schema:hasPart" resource="#title">
+      <h2 property="schema:name">Sovereignty Beyond Storage</h2>
+      <h3>Client-centric Data Integration with Personal Query Engines</h3>
+      <ul class="author inline">
+          <li class="current"><a href="https://www.rubensworks.net/">Ruben Taelman</a></li>
+      </ul>
+      <p class="affiliation"><a href="http://idlab.technology/">Ghent University – imec – IDLab, Belgium</a></p>
+    </section>
+
+    <section id="start" class="slide" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/webdecentralized.png'); background-size: cover;" inlist="" rel="schema:hasPart" resource="#start">
+        <!-- If we look at data from a high-level perspective, we can see that data is in fact highly decentralized. -->
+        <h2 property="schema:name" class="big" style="margin-top: 20px; color: white; text-shadow: 2px 2px black">Data is highly decentralized</h2>
+        <ul style="color: white; text-shadow: 2px 2px black; font-size: 1.3em" class="next">
+            <li><em>Produced</em> by governments, companies, individuals, &mldr;</li>
+            <li><em>Stored</em> at different locations across the world</li>
+            <li><em>Consumed</em> through interactive applications, processes, intelligent agents, &mldr;</li>
+        </ul>
+    </section>
+
+    <section id="query-centralized-problems" class="slide" inlist="" rel="schema:hasPart" resource="#query-centralized-problems">
+        <h2 property="schema:name">Centralization not always possible</h2>
+        <img src="img/solid-pods.svg" width="35%" style="float: right" />
+		<ul>
+			<li>
+				<h3>Private data</h3>
+				<span class="indent">Technical and legal reasons</span>
+			</li>
+			<li>
+				<h3>Evolving data</h3>
+				<span class="indent">Requires continuous re-indexing</span>
+			</li>
+			<li>
+				<h3>Web scale data</h3>
+				<span class="indent">Indexing the whole Web is difficult</span>
+			</li>
+		</ul>
+    </section>
+    
+    <section id="query-decentralized" class="slide" inlist="" rel="schema:hasPart" resource="#sparql-decentralized">
+        <h2 property="schema:name">How to gain insights over <em>decentralized</em> data without prior centralization?</h2>
+        <center><img src="img/client-decentralized.svg" width="60%" /></center>
+		<ul>
+			<li>
+				<h3>Not just one datasets</h3>
+				<span class="indent">Data is spread over the Web into multiple data sources (public/private)</span>
+			</li>
+			<li>
+				<h3>Not all data is not collocated with user device</h3>
+				<span class="indent">User device may host some, but not all data</span>
+			</li>
+		</ul>
+        <h3>Let's integrate <em>client-side</em>, instead of trusting arbitrary intermediaries.</h3>
+    </section>
+	
+    <section id="index" class="slide index" inlist="" rel="schema:hasPart" resource="#index">
+      <ul>
+        <li><a href="#index-query">Query-driven data integration</a></li>
+        <li><a href="#index-challenges">Future challenges</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-query" class="slide index" inlist="" rel="schema:hasPart" resource="#index-query">
+      <ul>
+        <li class="current"><a href="#index-query">Query-driven data integration</a></li>
+		<li><a href="#index-challenges">Future challenges</a></li>
+      </ul>
+    </section>
+
+    <section id="complexity" class="slide" inlist="" rel="schema:hasPart" resource="#complexity">
+        <h2 property="schema:name" class="big" style="margin-top: 20px; font-size: 1.85em">Decentralized data integration is challenging for application developers</h2>
+        <ul>
+            <li>
+              <h3>Discovering data</h3>
+  			  <span class="indent" style="font-style:italic">How can I find data sources? How can I find data within a source?</span>
+            </li>
+            <li>
+              <h3>Combining data</h3>
+  			  <span class="indent" style="font-style:italic">How to combine data across different data sources?</span>
+            </li>
+            <li>
+              <h3>Ensuring sovereignty</h3>
+  			  <span class="indent" style="font-style:italic">How to preserve rights and policies of users?</span>
+            </li>
+        </ul>
+    </section>
+    
+    <section id="connection-point" class="slide" inlist="" rel="schema:hasPart" resource="#connection-point">
+        <h2 property="schema:name" class="big" style="margin-top: 20px; font-size: 1.4em">Query engines abstract access to decentralized data</h2>
+        <h3>Hide the complexities of reading and writing for app developers</h3>
+        <center>
+            <img src="img/computer.png" alt="Application" width="150px" style="margin-right: 20px; margin-top: 80px" />
+            <span style="font-size: 6em; vertical-align: baseline; position: relative; top: -40px">&harr;</span>
+            <img src="img/gear.png" alt="Gear" width="170px" />
+            <span style="font-size: 6em; vertical-align: baseline; position: relative; top: -40px">&harr;</span>
+            <img src="img/globe.png" alt="Globe" width="150px" style="margin-left: 20px" />
+        </center>
+        <p style="text-align: right; font-style: italic"><a href="https://www.flaticon.com/free-icons/application" title="application icons">Image credit</a></p>
+    </section>
+
+    <section id="knowledge-graphs" class="slide" style="background-image: url('img/network.jpg'); background-size: cover; box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6)" resource="#knowledge-graphs">
+        <h2 class="big" style="margin-top: 20px; color: white; text-shadow: 2px 2px black">Focus on Knowledge Graphs</h2>
+        <ul style="color: white; text-shadow: 2px 2px black; font-size: 1.3em">
+            <li class="next">Graph-based data model</li>
+            <li class="next"><p class="indent" style="font-style:italic; color: white">&nbsp;&nbsp;When data does not fit into a fixed relation model</p></li>
+            <li class="next">Based on Semantic Web / Linked Data technologies</li>
+            <li class="next"><p class="indent" style="font-style:italic; color: white">&nbsp;&nbsp;RDF, SPARQL, &mldr;</p></li>
+            <li class="next"><p class="indent" style="font-style:italic; color: white">&nbsp;&nbsp;Interlinking data across multiple data sources</p></li>
+        </ul>
+    </section>
+	
+    <section id="query-decentralized-overview" class="slide" inlist="" rel="schema:hasPart" resource="#sparql-decentralized-overview">
+        <h2 property="schema:name">Approaches for querying over decentralized data</h2>
+		<ul>
+			<li>
+				<h3>Federated Query Processing</h3>
+				<span class="indent">Distributing query execution across <em>known</em> sources</span>
+			</li>
+			<li>
+				<h3>Link Traversal Query Processing</h3>
+				<span class="indent">Local query execution over sources that are <em>discovered</em> by following links</span>
+			</li>
+		</ul>
+    </section>
+
+    <section id="federated-overview" class="slide" inlist="" rel="schema:hasPart" resource="#federated-overview">
+        <h2 property="schema:name">Federated querying: Distribute query over query APIs</h2>
+        <center><img src="img/sparql-federated.svg" width="75%" /></center>
+		<ul>
+			<li>
+				<h3>Clients do limited effort</h3>
+				<span class="indent">Split up the query, distribute it (source assignment), and combine results</span>
+			</li>
+			<li>
+				<h3>Servers perform most of the effort</h3>
+				<span class="indent">They actually execute the queries, over potentially huge datasets</span>
+			</li>
+		</ul>
+    </section>
+
+    <section id="linktraversal-overview" class="slide" inlist="" rel="schema:hasPart" resource="#linktraversal-overview">
+        <h2 property="schema:name">Link Traversal: Exploit interlinking of documents</h2>
+        <center><img src="img/sparql-decentralized-links.svg" width="75%" /></center>
+		<ul>
+			<li>
+				<h3>Linked Data documents are linked to each other</h3>
+				<span class="indent">Following the Linked Data principles</span>
+			</li>
+			<li>
+				<h3>Query engine can <em>follow</em> links</h3>
+				<span class="indent">Start from one document, and discover new documents on the fly</span>
+			</li>
+		</ul>
+    </section>
+
+    <section id="index-challenges" class="slide index" inlist="" rel="schema:hasPart" resource="#index-challenges">
+      <ul>
+        <li><a href="#index-query">Query-driven data integration</a></li>
+		<li class="current"><a href="#index-challenges">Future challenges</a></li>
+      </ul>
+    </section>
+
+    <section id="federated-heterogeneous" class="slide" inlist="" rel="schema:hasPart" resource="#federated-heterogeneous">
+        <h2 property="schema:name">Is the SPARQL protocol the right way forward?</h2>
+		<ul>
+			<li>
+				<h3>Public SPARQL endpoints have low availability (95%)</h3>
+                <span class="indent">~1.5 days downtime per month!</span><br \>
+				<span class="indent">Due to high query expressivity is high and public nature</span>
+			</li>
+			<li>
+				<h3>Alternative interfaces besides SPARQL endpoints</h3>
+				<span class="indent">Linked Data Fragments: TPF, WiseKG, brTPF, Passage, ...</span><br \>
+                <span class="indent">Different levels of server expressivity</span>
+			</li>
+			<li>
+				<h3>Trade-off between server and client effort</h3>
+				<span class="indent">Low-cost publishing prevents server availability issues</span><br \>
+                <span class="indent">Executing parts of queries client-side</span>
+			</li>
+		</ul>
+    </section>
+
+    <section id="federation-in-practise" class="slide" inlist="" rel="schema:hasPart" resource="#federation-in-practise">
+      <h2 property="schema:name" style="font-size: 1.7em">Federated querying over public endpoints in practise does not work <em>due to restrictions</em></h2>
+      <center>
+		  <img src="img/realfed.png" alt="Real federation findings" style="height: 350px" \>
+      </center>
+      <ul style="font-size: 0.60em">
+          <li><em>Crum, Elias, et al. "Does SPARQL federation work in the real world? A case study over large biological SPARQL endpoints." ISWC 2026.</em></li>
+          <li><a href="https://ecrum19.github.io/fed-survey-results/">https://ecrum19.github.io/fed-survey-results/</a></li>
+      </ul>
+    </section>
+
+    <section id="traversal-open-data" class="slide" inlist="" rel="schema:hasPart" resource="#traversal-open-data">
+        <h2 property="schema:name">Is Link Traversal the right way forward?</h2>
+        <h3>Link Traversal is too slow for querying over Linked Open Data!</h3>
+        <br \>
+		<ul>
+			<li>
+                <h3>Massive number of possible links on the open Web</h3>
+                <span class="indent">New content is produced faster than you can follow links</span>
+			</li>
+			<li>
+                <h3>Inefficient query plans</h3>
+                <span class="indent">Traversal engine can not optimize sufficiently due to lack of statistics</span>
+			</li>
+		</ul>
+    </section>
+    
+    <section id="traversal-struct-assumptions" class="slide" inlist="" rel="schema:hasPart" resource="#traversal-struct-assumptions">
+        <h2 property="schema:name">Link Traversal becomes feasible with structural assumptions</h2>
+		<ul>
+			<li>
+                <h3>Environments with structural properties</h3>
+                <span class="indent">Subsets of the Web that follow specific structures</span>
+			</li>
+			<li>
+                <h3>Traversal engines can make additional assumptions</h3>
+                <span class="indent">Assumptions about how data is structured and interlinked</span><br \>
+                <span class="indent">&rarr; <em>Guided link traversal</em> (<a href="https://www.rubensworks.net/publications/taelman_iswc_research_solidquery_2023/">Taelman 2023</a>)</span>
+			</li>
+		</ul>
+    </section>
+    
+    <section id="solid-struct-assumptions" class="slide" inlist="" rel="schema:hasPart" resource="#solid-struct-assumptions">
+        <h2 property="schema:name">Solid pods follow structural properties</h2>
+        <div style="float: right; width: 35%">
+            <center><img src="img/solid-logo.svg" width="50%" /></center>
+            <img src="img/solid-pods.svg" width="100%" />
+        </div>
+		<ul>
+			<li>
+				<h3>Pod contents listed through as REST API</h3>
+				<span class="indent">Linked Data Platform</span>
+			</li>
+			<li>
+				<h3>WebID profile</h3>
+				<span class="indent">User name and link to storage</span>
+			</li>
+			<li>
+				<h3>Type index</h3>
+				<span class="indent">Type-based resource discovery</span>
+			</li>
+		</ul>
+    </section>
+
+    <section id="link-traversal-results" class="slide" inlist="" rel="schema:hasPart" resource="#link-traversal-results">
+      <h2 property="schema:name" style="font-size: 1.5em">Query results arrive incrementally<br \>within human attention limits</h2>
+      <center>
+          <img src="img/querytimes_d2-3.svg" alt="Query arrival times for Query D2-3" style="height: 260px" \>
+      </center>
+      <ul>
+          <li>SPARQL query with 6 triple patterns</li>
+		  <li>Across 1.531 simulated Solid pods (158.233 files, 3.556.159 triples)</li>
+		  <li style="font-size: 0.75em"><em><a href="https://comunica.github.io/Article-ISWC2023-SolidQuery/">Taelman, Ruben, and Ruben Verborgh. "Link traversal query processing over decentralized environments with structural assumptions." International Semantic Web Conference 2023.</a></em></li>
+      </ul>
+    </section>
+	
+    <section id="challenges" class="slide" inlist="" rel="schema:hasPart" resource="#challenges">
+      <h2 property="schema:name">If pods expose more information, complex querying can become faster</h2>
+     <ul>
+          <li>
+          	  <h3>When following links, engines can <em>discover</em> optimizations</h3>
+              <span class="indent">If pods expose them</span>
+          </li>
+          <li>
+          	  <h3>A pod can guide engines more efficiently towards relevant data</h3>
+              <span class="indent">Type indexes, shape trees, shape indexes, &mldr;</span>
+          </li>
+          <li>
+          	  <h3>Cross-pod indexes can prune out irrelevant pods</h3>
+              <span class="indent">Aggregations or summarization of data across collections of pods</span><br \>
+              <span class="indent">Dangers: staleness, trust, censorship, &mldr;</span>
+          </li>
+      </ul>
+    </section>
+	
+    <section id="shape-index" class="slide" inlist="" rel="schema:hasPart" resource="#shape-index">
+      <h2 property="schema:name" style="font-size: 1.9em">Pods exposing <em>shape information</em> allows query engines to skip many links</h2>
+      <center>
+		  <img src="img/shapeindex.png" alt="Shape index" style="height: 340px" \>
+      </center>
+      <ul>
+          <li style="font-size: 0.75em"><em><a href="https://www.semantic-web-journal.net/system/files/swj4106.pdf">Tam, Bryan-Elliott, et al. "Traveling with a Map: Reducing the Search Space of Link Traversal Queries Using RDF Shapes." Semantic Web Journal (2026).</a></em></li>
+      </ul>
+    </section>
+
+    <section id="query-caching" class="slide" inlist="" rel="schema:hasPart" resource="#query-caching">
+      <h2 property="schema:name">Can personalized nature of engine be exploited for improved performance?</h2>
+      <h3>Client-side caching across queries</h3><br \>
+      <center>
+		  <img src="img/solidsessionbench.png" alt="SolidSessionBench" style="height: 270px" \>
+      </center>
+      <ul>
+          <li style="font-size: 0.75em"><em><a href="https://rubeneschauzier.github.io/simulated-query-sequence-paper/build/main.pdf">Eschauzier, Ruben, et al. "SolidSessionBench: Realistic Query Sequences for User-Oriented Decentralized Environments." ISWC 2026.</a></em></li>
+      </ul>
+    </section>
+
+    <section id="schema-alignment" class="slide" inlist="" rel="schema:hasPart" resource="#schema-alignment">
+      <h2 property="schema:name">How to manage different schemas across sources?</h2>
+      <h3>Schema alignment at query time!</h3><br \>
+      <ul>
+          <li>
+          	  <h3>Different data sources can use different vocabularies</h3>
+              <span class="indent">How to query them using a single one?</span>
+          </li>
+          <li>
+          	  <h3>Feasible for federation</h3>
+              <span class="indent">Materialization versus virtualization</span>
+          </li>
+          <li>
+          	  <h3>Challenging for link traversal</h3>
+              <span class="indent">Because it impacts discovery mechanisms</span>
+          </li>
+          <li style="font-size: 0.75em"><em><a href="https://arxiv.org/pdf/2604.19205">Tam, Bryan-Elliott, Pieter Colpaert, and Ruben Taelman. "Demonstrating Online Schema Alignment in Decentralized Knowledge Graphs Querying." arXiv preprint arXiv:2604.19205 (2026).</a></em></li>
+      </ul>
+    </section>
+
+    <section id="subweb-specs" class="slide" inlist="" rel="schema:hasPart" resource="#subweb-specs">
+      <h2 property="schema:name">How to manage partial trust in data</h2>
+      <h3><em>Malicious friends stating different names of others</em></h3>
+      <ul>
+          <li>
+          	  <h3>Not all data (sources) may be trustworthy</h3>
+              <span class="indent">How to (partially) trust a data source?</span>
+          </li>
+          <li>
+          	  <h3>SWSL: Subweb specification language</h3>
+              <span class="indent">Specify which subsets of sources to trust</span>
+          </li>
+          <pre style="font-size: 0.75em">&lt;https://uma.ex/#me&gt; ex:hasSpecification &lt;#spec1&gt;.
+&lt;#spec1&gt; ex:appliesTo &lt;https://uma.ex/&gt;;
+ex:scope """
+  FOLLOW ?friend WITH SUBWEBS {
+  &lt;https://uma.ex/#me&gt; foaf:knows ?friend.
+  } INCLUDE { ?friend ?p ?o. }
+"""^^ex:SWSL.</pre>
+          <li style="font-size: 0.75em"><em><a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6040304BA43469DC1ED88C907430B343/S1471068423000054a.pdf/distributed_subweb_specifications_for_traversing_the_web.pdf">Bogaerts, B., Ketsman, B., Zeboudj, Y., Aamer, H., Taelman, R., & Verborgh, R. (2024). Distributed subweb specifications for traversing the web. Theory and Practice of Logic Programming, 24(2), 394-420.</a></em></li>
+      </ul>
+    </section>
+	
+    <section id="index-final" class="slide index" inlist="" rel="schema:hasPart" resource="#index-final">
+      <ul>
+        <li><a href="#index-query">Query-driven data integration</a></li>
+        <li><a href="#index-challenges">Future challenges</a></li>
+      </ul>
+    </section>
+	
+    <section id="conclusion" class="slide" inlist="" rel="schema:hasPart" resource="#conclusion">
+      <h2 property="schema:name">Conclusion: Personal query engines for integrating decentralized data</h2>
+		<ul>
+			<li>
+				<h3>Client-centric</h3>
+                <span class="indent">Execution happens close to the user, in a trusted environment</span><br \>
+			</li>
+			<li>
+				<h3>Various query processing techniques exists</h3>
+                <span class="indent">Trade-offs between federated querying and link traversal</span><br \>
+                <span class="indent">Need for a hybrid between federation and link traversal?</span>
+			</li>
+			<li>
+                <center><img src="img/comunica_white_on_red.svg" width="12%" style="float: right" /></center>
+				<h3>Active research</h3>
+                <span class="indent"><a href="https://comunica.dev/">https://comunica.dev/</a>: Engine for federation + link traversal</span><br \>
+                <span class="indent">We're looking for collaborations!</span>
+			</li>
+		</ul>
+    </section>
+
+    <section id="team" class="slide team" inlist="" rel="schema:hasPart" resource="#team">
+      <h2 property="schema:name">Personal Retrieval and Integration team <em>KNoWS / IDLab / UGent</em></h2>
+      <ul class="members">
+        <li>
+          <img src="img/team/ruben-eschauzier.jpg" alt="Ruben Eschauzier" />
+          <div><h3>Ruben Eschauzier</h3><span>Personalized query optimization in link traversal query processing</span></div>
+        </li>
+        <li>
+          <img src="img/team/elias-crum.jpg" alt="Elias Crum" />
+          <div><h3>Elias Crum</h3><span>Storing and querying personal genome data in decentralized environments <em>(Joint PhD with VITO)</em></span></div>
+        </li>
+        <li>
+          <img src="img/team/jonni-hanski.jpg" alt="Jonni Hanski" />
+          <div><h3>Jonni Hanski</h3><span>Adaptive client-side techniques in link traversal</span></div>
+        </li>
+        <li>
+          <img src="img/team/bryan-elliott-tam.jpg" alt="Bryan-Elliott Tam" />
+          <div><h3>Bryan-Elliott Tam</h3><span>Optimizing decentralized querying using explicit data publication structures</span></div>
+        </li>
+        <li>
+          <img src="img/team/jitse-de-smet.jpg" alt="Jitse De Smet" />
+          <div><h3>Jitse De Smet</h3><span>A data management approach to RDF data integration</span></div>
+        </li>
+        <li>
+          <img src="img/team/ruben-taelman.jpg" alt="Ruben Taelman" />
+          <div><h3>Ruben Taelman <em>(team lead)</em></h3><span></span></div>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <p class="license">
+            &#169; <span property="schema:copyrightYear">2026</span> <a href="https://www.rubensworks.net" rel="schema:copyrightHolder"><span resource="https://www.rubensworks.net/#me">Ruben Taelman</span></a>
+            — <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" property="schema:license">Creative Commons Attribution 4.0</a>, unless otherwise indicated.
+      </p>
+      <a href="https://github.com/rubensworks/slides-2026-espresso-sovereign-integration">Source</a>
+    </footer>
+
+    <script src="shower/shower.min.js"></script>
+  </body>
+</html>
