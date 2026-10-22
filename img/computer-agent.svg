@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 520" width="580" height="520">
+  <g fill="none" stroke="#000" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Computer / application -->
+    <path d="M285 40 H455 a25 25 0 0 1 25 25 V395 a25 25 0 0 1 -25 25 H410"/>
+    <path d="M370 420 H45 a25 25 0 0 1 -25 -25 V65 a25 25 0 0 1 25 -25 H250"/>
+    <path d="M20 345 H480"/>
+    <path d="M60 345 V100 a15 15 0 0 1 15 -15 H425 a15 15 0 0 1 15 15 V345"/>
+    <path d="M60 155 H440"/>
+    <circle cx="95" cy="120" r="10" fill="#000"/>
+    <circle cx="135" cy="120" r="10" fill="#000"/>
+    <circle cx="175" cy="120" r="10" fill="#000"/>
+    <path d="M160 275 H105 V195 H395 V275 H200"/>
+    <path d="M105 345 V310 H240 V345"/>
+    <path d="M265 345 V310 H395 V345"/>
+    <path d="M215 420 L205 490 M285 420 L295 490 M165 490 H335"/>
+  </g>
+  <!-- Robot / AI agent, overlapping the bottom-right corner -->
+  <g transform="translate(330 250) scale(0.62)" fill="none" stroke="#000" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <!-- white backing so the robot occludes the monitor lines -->
+    <rect x="5" y="80" width="340" height="340" rx="40" fill="#fff" stroke="#fff" stroke-width="50"/>
+    <path d="M165 95 V55"/>
+    <circle cx="165" cy="35" r="20" fill="#fff"/>
+    <rect x="40" y="95" width="250" height="220" rx="35" fill="#fff"/>
+    <path d="M40 160 H25 a15 15 0 0 0 -15 15 V240 a15 15 0 0 0 15 15 H40"/>
+    <path d="M290 160 H305 a15 15 0 0 1 15 15 V240 a15 15 0 0 1 -15 15 H290"/>
+    <circle cx="110" cy="190" r="22"/>
+    <circle cx="220" cy="190" r="22"/>
+    <path d="M100 252 Q165 282 230 252"/>
+    <path d="M110 315 V345 H220 V315"/>
+    <path d="M75 345 V395 H255 V345"/>
+  </g>
+</svg>
